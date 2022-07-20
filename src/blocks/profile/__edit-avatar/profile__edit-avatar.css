@@ -1,0 +1,25 @@
+.profile__edit-avatar{
+    background-color: unset;
+    background-image: url(../../../images/EditProfile.svg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+}
+@media (max-width: 767px) {
+    .profile__edit-button {
+        width: 18px;
+        height: 18px;
+        align-self: center;
+        margin: 0px;
+        margin-left: 10px;
+        background-size: 7.5px 7.5px;
+    }
+  }
+  .profile__edit-avatar:hover{
+     opacity: 0.8;
+     cursor: pointer;
+ }

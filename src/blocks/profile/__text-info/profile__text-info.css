@@ -1,0 +1,9 @@
+.profile__text-info{
+    display: block;
+    padding-top: 26px;
+}
+@media (max-width:767px) {
+    .profile__text-info{
+        text-align: center;
+    }
+}

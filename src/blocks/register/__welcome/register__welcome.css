@@ -1,0 +1,15 @@
+.register__welcome{
+    margin: 0 auto;
+    font-size: 24px;
+    font-style: normal;
+    text-align: center;
+    font-weight: 900;
+    line-height: 29px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    color: #FFFFFF;
+    margin: 60px auto 77px;
+    max-width: 366px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

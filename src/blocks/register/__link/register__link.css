@@ -1,0 +1,28 @@
+.register__link{
+    margin: 186px auto 15px;
+    background-color: #FFF;
+    border: 0px;
+    border-radius: 2px;
+    min-height: 50px;
+    min-width: 358px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000;
+}
+.register__link:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+@media (max-width:768px){
+    .register__link{
+        min-width: 238px;
+        min-height: 46px;
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
