@@ -228,8 +228,6 @@ function App() {
       if(res.token){
         localStorage.setItem("jwt", res.token);
         handleCheckToken();
-        handlePath('/');
-        history.push('/');
       }
     })
     .catch( (err) => {
@@ -247,6 +245,8 @@ function App() {
       console.log('check',res.data.email);
       setLoggedIn(true);
       handleEmail(res.data.email);
+      handlePath('/');
+      history.push('/');
     }) 
     .catch(err => {
       console.log(`Ошибка: ${err}`);
