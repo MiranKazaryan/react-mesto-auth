@@ -237,16 +237,14 @@ function App() {
 }
   
   function handleCheckToken(){
-    console.log(localStorage.getItem('jwt'));
-    if (localStorage.getItem('jwt')){
+    //console.log(localStorage.getItem('jwt'));
     const jwt = localStorage.getItem('jwt');
+    if (jwt !== null && jwt !== "undefined"){
     auth.checkToken(jwt)
     .then((res)=>{
       console.log('check',res.data.email);
       setLoggedIn(true);
       handleEmail(res.data.email);
-      handlePath('/');
-      history.push('/');
     }) 
     .catch(err => {
       console.log(`Ошибка: ${err}`);
@@ -255,12 +253,25 @@ function App() {
   }
   const [email, setEmail] = useState('');
   
+  useEffect(() =>{
+    if(loggedIn){
+      handlePath('/');
+      history.push('/');
+    }
+  },[loggedIn])
+
+  function handleOnLogout() {
+    localStorage.removeItem("jwt");
+    setEmail("");
+    setLoggedIn(false);
+  }
+
   function handleEmail(email){
     setEmail(email);
   }
   return (
     <div className="page">
-      <Header loggedIn ={loggedIn} email={email} path={currentPath}/>
+      <Header loggedIn ={loggedIn} email={email} path={currentPath} onLogout={handleOnLogout}/>
       <CurrentUserContext.Provider value={currentUser}>
         <Switch>
           <Route path = "/signup">
