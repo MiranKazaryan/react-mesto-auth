@@ -1,8 +1,6 @@
 // Login.js
 
 import {React, useState} from 'react';
-import { Link } from 'react-router-dom';
-
 
 function Login({onSubmit}) {
   const [password, setPassword] = useState('');

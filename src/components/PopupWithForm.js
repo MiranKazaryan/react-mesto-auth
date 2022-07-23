@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 //компонент для открытия попапов
 function PopupWithForm({
   title,

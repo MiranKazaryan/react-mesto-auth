@@ -1,15 +1,21 @@
+import successIcon from "../images/status_success.svg";
+import errorIcon from "../images/status_error.svg";
+
 //компонент подтверждения удаления
-function InfoTooltip({ isOpen, onClose, statusImage, status, title }) {
+function InfoTooltip({ isOpen, onClose, isSuccess }) {
+  const successStatusText = "Вы успешно зарегистрировались!";
+  const errorStatusText = "Что-то пошло не так! Попробуйте ещё раз.";
 
   return (
-    <div className={isOpen ? 'popup popup_opened' : 'popup'} onClick={onClose}>
-      <div className="popup__container">
-        <img className="popup__status-image" src={statusImage} alt={`картинка регистрации: ${status}`}/>
-        <p className="popup__status-caption">{title}</p>
-        <button className="popup__closed" type="button" onClick={onClose} />
+    <div className={`popup ${isOpen ? 'popup_opened' : '' }`} onClick={onClose}>
+      <div className="popup__container tooltip__container">
+
+        <img className="tooltip__icon" src={isSuccess ? successIcon : errorIcon} alt="Статус"/>
+        <h2 className="tooltip__title">{isSuccess ? successStatusText : errorStatusText}</h2>
+        <button type="button" className="popup__close-button" onClick={onClose}/>
       </div>
     </div>
   );
 }
 
-export default ConfirmDeletePopup;
+export default InfoTooltip;

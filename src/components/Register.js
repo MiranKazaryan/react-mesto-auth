@@ -1,6 +1,6 @@
 // Register.js
 
-import {React,useState,useEffect} from 'react';
+import {React, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -10,10 +10,8 @@ function Register({onSubmit, onPathChange}){
 
   function handleSubmit(e){
         e.preventDefault();
-        //handlePathChange("/signin");
         onSubmit(password,email);
   }
-  const handlePathChange = (newPath) => {onPathChange(newPath)};
 
 
 

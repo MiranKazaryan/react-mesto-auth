@@ -56,3 +56,7 @@
 @import url(../src/blocks/header/__link/header__link.css);
 @import url(../src/blocks/header/__container/header__container.css);
 @import url(../src/blocks/header/__email/header__email.css);
+
+@import url(../src/blocks/tooltip/__container/tooltip__container.css);
+@import url(../src/blocks/tooltip/__icon/tooltip__icon.css);
+@import url(../src/blocks/tooltip/__title/tooltip__title.css);

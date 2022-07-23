@@ -14,6 +14,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Register from "./Register";
 import Login from "./Login"
 import * as auth from '../utils/auth';
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   //булевые стейты попапов
@@ -36,11 +37,12 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentPath, setCurrentPath] = useState('/');
 
+  //tooltip
+  const [isToolOpened, setToolOpened] = useState(false);
+  const [registeredIn, setRegisteredIn] = useState(false);
+  //const navigate =  useNavigate();
   const history = useHistory();
-  //авторизация пользователя на странице
-  function handleAuth(){
-    setLoggedIn(true);
-  }
+
   function handlePath(newPath){
     setCurrentPath(newPath);
   }
@@ -91,6 +93,7 @@ function App() {
   }
   //хук обновляющий информацию о пользователе и карточках
   useEffect(() => {
+    handleCheckToken();
     Promise.all([api.getInitialCards(), api.getProfile()])
       .then(([cardList, res]) => {
         setCurrentUser(res);
@@ -122,13 +125,15 @@ function App() {
   function handleCardClick(card) {
     setSelectedCard(card);
   }
+
   //закрытие попапов
   function closeAllPopups() {
     setAddPopupOpened(false);
     setEditAvatarPopupOpened(false);
     setEditPopupOpened(false);
     setConfirmPopupOpened(false);
-
+    setToolOpened(false);
+    setRegisteredIn(false);
     setSelectedCard({});
   }
   //Api сабмит редактирования профиля
@@ -196,45 +201,60 @@ function App() {
       closeAllPopups();
     }
   }
-  function handlePath(newPath){
-    setCurrentPath(newPath);
-  }
+
   function handleSignupSubmit(password, email){
     auth.register(password,email).then(response => {
-      if(response.status !== 400){
-        handlePath('/signin');
-        history.push('/signin');
+      console.log(response);
+      if(response.ok){
+        setRegisteredIn(true);
       }
+      handlePath('/signin');
+      history.push('/signin');
       return response.json();
-    })}
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally (() => {
+      setToolOpened(true);
+    })
+  }
 
   function handleSigninSubmit(password, email){
     auth.authorization(password,email).then((response)=>{
-      if(response.status !== 400){
-        handlePath('/signup');
-        setLoggedIn(true);
-        handleEmail(email);
+      return response.json();
+    })
+    .then((res)=>{
+      if(res.token){
+        localStorage.setItem("jwt", res.token);
+        handleCheckToken();
         handlePath('/');
         history.push('/');
       }
-      return response.json();
-  }).then((res)=>{
-    localStorage.setItem("jwt", res.token);
-    handleCheckToken();
-  })
+    })
+    .catch( (err) => {
+      console.log(err);
+    }
+  )
 }
   
   function handleCheckToken(){
     console.log(localStorage.getItem('jwt'));
     if (localStorage.getItem('jwt')){
     const jwt = localStorage.getItem('jwt');
-    auth.checkToken(jwt).then((res)=>{console.log('check',res);})
-      //console.log('res',res);
+    auth.checkToken(jwt)
+    .then((res)=>{
+      console.log('check',res.data.email);
+      setLoggedIn(true);
+      handleEmail(res.data.email);
+    }) 
+    .catch(err => {
+      console.log(`Ошибка: ${err}`);
+    });
     }
   }
   const [email, setEmail] = useState('');
   
-
   function handleEmail(email){
     setEmail(email);
   }
@@ -299,7 +319,10 @@ function App() {
         onConfirm={handleCardDelete}
         isLoad={isLoad}
       />
-
+      <InfoTooltip 
+      isSuccess={registeredIn} 
+      isOpen={isToolOpened} 
+      onClose={closeAllPopups} />
       <ImagePopup
         card={selectedCard}
         onClose={closeAllPopups}
