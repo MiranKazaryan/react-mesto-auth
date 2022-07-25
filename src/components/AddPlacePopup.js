@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
+
 //компонент добавления карточки
 function AddPlacePopup({
   isOpen,
@@ -9,13 +10,14 @@ function AddPlacePopup({
   handleOverlayClose,
 }) {
   //стейты имени и описания картинки
-  const [name, setName] = useState({});
-  const [link, setLink] = useState({});
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
   //валидация
   const [nameValid, setNameValid] = useState(false);
   const [errorNameMessage, setErrorNameMessage] = useState("");
   const [linkValid, setLinkValid] = useState(false);
   const [errorLinkMessage, setErrorLinkMessage] = useState("");
+
   //обнуление инпутов после ввода без сабмита
   useEffect(() => {
     setName("");

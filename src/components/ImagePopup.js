@@ -13,7 +13,7 @@ function ImagePopup({ card, onClose, handleOverlayClose }) {
           onClick={onClose}
         ></button>
         <img className="popup__image" alt={card.name} src={card.link} />
-        <p className="popup__view-title"></p>
+        <p className="popup__view-title">{card.name}</p>
       </div>
     </section>
   );

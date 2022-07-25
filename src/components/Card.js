@@ -2,9 +2,7 @@ import {useContext} from "react";
 import { CardContext } from "../contexts/CardContext";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 //компонент карточки
-function Card({ onCardClick, onCardLike, onCardDelete }) {
-  //использование контекста карточки
-  const card = useContext(CardContext);
+function Card({ card,onCardClick, onCardLike, onCardDelete }) {
   //использование контекста текущего пользователя
   const currentUser = useContext(CurrentUserContext);
   //проверка карточки на принадлежность пользователю

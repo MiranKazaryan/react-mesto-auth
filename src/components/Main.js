@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { CardContext } from "../contexts/CardContext";
@@ -47,13 +47,13 @@ function Main({
       <section className="photo-grid">
         <ul className="cards">
           {cards.map((card) => (
-            <CardContext.Provider value={card} key={card._id}>
-              <Card
-                onCardClick={onCardClick}
-                onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
-              />
-            </CardContext.Provider>
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
           ))}
         </ul>
       </section>

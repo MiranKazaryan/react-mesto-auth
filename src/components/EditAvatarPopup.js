@@ -10,7 +10,7 @@ function EditAvatarPopup({
 }) {
   //использование контекста с текущими значениями пользователя const currentUser = useContext(CurrentUserContext);
   //стейт аватара
-  const [avatar, setAvatar] = useState({});
+  const [avatar, setAvatar] = useState("");
   //валидация
   const [linkValid, setLinkValid] = useState(false);
   const [errorLinkMessage, setErrorLinkMessage] = useState("");

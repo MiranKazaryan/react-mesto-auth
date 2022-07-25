@@ -10,8 +10,8 @@ function EditProfilePopup({
   handleOverlayClose,
 }) {
   //стейты имени и описания пользователя
-  const [name, setName] = useState({});
-  const [description, setDescription] = useState({});
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
   //валидация
   const [nameValid, setNameValid] = useState(false);
