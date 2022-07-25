@@ -205,13 +205,6 @@ function App() {
     auth
       .register(password, email)
       .then((response) => {
-        /*console.log(response);
-      if(response.ok){
-        setRegisteredIn(true);
-      }
-      handlePath('/signin');
-      history.push('/signin');
-      return response.json();*/
         setRegisteredIn(true);
         handlePath("/signin");
         history.push("/signin");
@@ -240,7 +233,6 @@ function App() {
   }
 
   function handleCheckToken() {
-    //console.log(localStorage.getItem('jwt'));
     const jwt = localStorage.getItem("jwt");
     if (jwt !== null && jwt !== "undefined") {
       auth
