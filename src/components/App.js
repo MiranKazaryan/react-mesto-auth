@@ -132,7 +132,6 @@ function App() {
     setEditPopupOpened(false);
     setConfirmPopupOpened(false);
     setToolOpened(false);
-    setRegisteredIn(false);
     setSelectedCard({});
   }
   //Api сабмит редактирования профиля
@@ -205,6 +204,7 @@ function App() {
     auth
       .register(password, email)
       .then((response) => {
+        console.log(response);
         setRegisteredIn(true);
         handlePath("/signin");
         history.push("/signin");
